@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>口播文案模块化工具 · 本地版</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <div class="brand"><span>口播</span>文案模块化工具</div>
+        <p>公开版 · 固定结构，同功能替换</p>
+      </div>
+      <span class="static-badge">无需登录 · 浏览器内处理</span>
+    </header>
+
+    <main class="workspace">
+      <section class="panel input-panel">
+        <div class="panel-head">
+          <div><b>01</b><h2>输入原文</h2></div>
+          <button id="sampleBtn" class="text-btn">填入示例</button>
+        </div>
+        <textarea id="sourceText" placeholder="粘贴需要处理的口播文案……"></textarea>
+        <div class="metrics"><span id="sourceCount">0 字</span><span id="sourceTime">约 0 秒</span></div>
+        <button id="analyzeBtn" class="primary">提取主题并拆解</button>
+        <p class="hint">模型只改表达，不应新增诊断、数据或疗效承诺。</p>
+      </section>
+
+      <section class="panel structure-panel">
+        <div class="panel-head">
+          <div><b>02</b><h2>结构与模块</h2></div>
+          <button id="shuffleBtn" class="text-btn" disabled>全部换一组</button>
+        </div>
+        <div id="emptyState" class="empty">
+          <div class="empty-icon">拆</div>
+          <h3>等待分析</h3>
+          <p>系统会提取主题、识别每段作用，并为每个固定位置生成等长表达。</p>
+        </div>
+        <div id="analysis" class="hidden">
+          <div class="theme-card">
+            <label>主题</label><input id="themeInput" />
+            <p id="thesisText"></p>
+            <div id="facts" class="tags"></div>
+          </div>
+          <div id="moduleList"></div>
+        </div>
+      </section>
+
+      <section class="panel output-panel">
+        <div class="panel-head">
+          <div><b>03</b><h2>组合结果</h2></div>
+          <button id="copyBtn" class="text-btn" disabled>复制</button>
+        </div>
+        <textarea id="outputText" placeholder="完成拆解后，这里会按原顺序组合所选模块。"></textarea>
+        <div class="metrics"><span id="outputCount">0 字</span><span id="delta">与原文 0%</span></div>
+        <button id="exportBtn" class="secondary full" disabled>导出 TXT</button>
+        <div class="checklist">
+          <h3>组合约束</h3>
+          <p>✓ 主题保持一致</p><p>✓ 模块顺序固定</p>
+          <p>✓ 同位置只换同功能表达</p><p>✓ 口语长度尽量接近原文</p>
+        </div>
+      </section>
+    </main>
+
+    <div id="toast" class="toast hidden"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
